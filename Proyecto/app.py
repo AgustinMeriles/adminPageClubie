@@ -37,14 +37,40 @@ def add_contact():
         cursor.execute('INSERT INTO clubes (nombre, email, phone, direccion) VALUES (?, ?, ?, ?)',
                        (fullname, email, phone, direccion))
         get_db().commit()
-        return render_template('registro.html')
+        return redirect(url_for('Index'))
 
 @app.route('/delete/<string:id>')
-def delte_club(id):
+def delete_club(id):
     cursor = get_db().cursor()
-    cursor.execute('DELETE FROM clubes WHERE id = {0}'.format(id))
+    cursor.execute('DELETE FROM clubes WHERE id = ?',(id,))
     get_db().commit()
-    return render_template('clubes.html')
+    return redirect(url_for('Index'))
+
+@app.route('/edit/<id>')
+def get_contact(id):
+    cursor = get_db().cursor()
+    cursor.execute('SELECT * FROM clubes WHERE id = ?',(id,))
+    data = cursor.fetchall()
+    return render_template('edit-club.html', club = data[0])
+
+@app.route('/update/<id>', methods = 'POST')
+def update_club(id):
+    if request.method == 'POST':
+        fullname = request.form['fullname']
+        email = request.form['email']
+        phone = request.form['phone']
+        direccion = request.form['direccion']
+
+        cursor = get_db().cursor()
+        cursor.execute("""
+            UPDATE clubes
+            SET fullname = ?,
+                email = ?,
+                phone = ?,
+                direccion = ?,
+            WHERE id = ?
+        """, (fullname, email, phone, direccion))
+        return redirect(url_for('Index'))
 
 if __name__ == '__main__':
     with app.app_context():

@@ -1,0 +1,23 @@
+<form action="/update/{{club.0}}" method="POST">
+    <div>
+        <label for="txtName">Nombre</label>
+        <input type="text" id="txtName" placeholder="Ingrese el nombre del Club" name="fullname" value="{{ club.1 }}"> <br>
+    </div>
+
+    <div>
+        <label for="txtEmail">Email</label>
+        <input type="text" id="txtEmail" placeholder="Ingrese el email del Club" name="email" value="{{ club.2 }}"><br>
+    </div>
+
+    <div>
+        <label for="txtTel">Teléfono</label>
+        <input type="text" id="txtTel" placeholder="Ingrese el Teléfono del Club" name="phone" value="{{ club.3 }}"><br>
+    </div>
+
+    <div>
+        <label for="txtDir">Dirección</label>
+        <input type="text" id="txtDir" placeholder="Ingrese la dirección del Club" name="direccion" value="{{ club.4 }}"><br>
+    </div>
+
+    <button type="submit">Registrar</button>
+</form>

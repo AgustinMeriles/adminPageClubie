@@ -16,37 +16,37 @@
             <img src="../imagenes/marijuana (1).png" alt="Logo Admin">
         </div>
         <nav>
-            <a href="../html/index.html">Inicio</a>
-                <a href="../html/clubes.html">Clubes</a>
+            <a href="../templates/index.html">Inicio</a>
+                <a href="../templates/clubes.html">Clubes</a>
         </nav>
     </header>
 
     <main>
-        <form action="register">
+        <form action="/add_contact" method="POST">
             <fieldset>
                 <legend><b>Registrar Club</b></legend>
                 
                 <div>
                     <label for="txtName">Nombre</label>
-                    <input type="text" id="txtName" placeholder="Ingrese el nombre del Club"> <br>
+                    <input type="text" id="txtName" placeholder="Ingrese el nombre del Club" name="fullname"> <br>
                 </div>
 
                 <div>
                     <label for="txtEmail">Email</label>
-                    <input type="text" id="txtEmail" placeholder="Ingrese el email del Club"><br>
+                    <input type="text" id="txtEmail" placeholder="Ingrese el email del Club" name="email"><br>
                 </div>
 
                 <div>
                     <label for="txtTel">Teléfono</label>
-                    <input type="text" id="txtTel" placeholder="Ingrese el Teléfono del Club"><br>
+                    <input type="text" id="txtTel" placeholder="Ingrese el Teléfono del Club" name="phone"><br>
                 </div>
 
                 <div>
                     <label for="txtDir">Dirección</label>
-                    <input type="text" id="txtDir" placeholder="Ingrese la dirección del Club"><br>
+                    <input type="text" id="txtDir" placeholder="Ingrese la dirección del Club" name="direccion"><br>
                 </div>
     
-                <input type="button" value="Registrar" id="btnRegistro">
+                <button type="submit">Registrar</button>
             </fieldset>
 
         </form>

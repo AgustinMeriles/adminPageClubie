@@ -23,7 +23,7 @@ def Index():
     cursor = get_db().cursor()
     cursor.execute('SELECT * FROM clubes')
     data = cursor.fetchall()
-    return render_template('clubes.html', clubes = data)
+    return render_template('registro.html', clubes = data)
 
 @app.route('/add_club', methods=['POST'])
 def add_contact():
@@ -53,7 +53,7 @@ def get_contact(id):
     data = cursor.fetchall()
     return render_template('edit-club.html', club = data[0])
 
-@app.route('/update/<id>', methods = 'POST')
+@app.route('/update/<id>', methods=['POST'])
 def update_club(id):
     if request.method == 'POST':
         fullname = request.form['fullname']
@@ -64,12 +64,13 @@ def update_club(id):
         cursor = get_db().cursor()
         cursor.execute("""
             UPDATE clubes
-            SET fullname = ?,
+            SET nombre = ?,
                 email = ?,
                 phone = ?,
-                direccion = ?,
+                direccion = ?
             WHERE id = ?
-        """, (fullname, email, phone, direccion))
+        """, (fullname, email, phone, direccion, id))
+        get_db().commit()
         return redirect(url_for('Index'))
 
 if __name__ == '__main__':
